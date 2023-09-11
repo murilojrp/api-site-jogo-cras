@@ -13,24 +13,24 @@ const getPosicao = async (req, res) => {
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Registros de posição recuperados com sucesso',
+        message: 'Registros de posição recuperados com sucesso!',
         data: response
       })
     }
     let response = await Posicao.findOne({
       where: {
-        id_posicao: req.params.id_posicao
+        id_posicao
       }
     })
     if (!response) {
       return res.status(500).send({
         type: 'error',
-        message: 'Não foi possível encontrar os registros de posição',
+        message: 'Não foi possível encontrar o registro de posição',
       })
     }
     return res.status(200).send({
       type: 'success',
-      message: 'Registro de posição recuperado com sucesso',
+      message: 'Registro de posição recuperado com sucesso!',
       data: response
     })
   } catch (error) {
@@ -55,7 +55,7 @@ const createPosicao = async (req, res) => {
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Posição registrada com sucesso',
+        message: 'Posição registrada com sucesso!',
         data: response
       })
     } catch (error) {
@@ -72,23 +72,21 @@ const deletePosicao = async (req, res) => {
       if (!id_posicao) {
         return res.status(404).send({
           type: 'error',
-          message: 'Id não informado',
+          message: 'Id não informado para deleção da posição',
         })
       }
-
       let posicao = await Posicao.findOne({
         where: {
           id_posicao
         }
       })
-
       if (!posicao) {
         return res.status(404).send({
           type: 'error',
-          message: 'Registro de posição não encontrado',
+          message: 'Registro de posição não encontrado com este Id',
         })
       }
-      let response = await posicao.destroy()
+      let response = await Posicao.destroy()
       if (!response) {
         return res.status(500).send({
           type: 'error',
@@ -97,8 +95,7 @@ const deletePosicao = async (req, res) => {
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Posição deletada com sucesso',
-        data: response
+        message: 'Posição deletada com sucesso!',
       })
     } catch (error) {
       return res.status(500).send({
@@ -120,7 +117,7 @@ const updatePosicao = async (req, res) => {
       if (!posicao) {
         return res.status(404).send({
           type: 'error',
-          message: 'Registro de posição não encontrado',
+          message: 'Registro de posição não encontrado com este Id',
         })
       }
       let response = await posicao.update({
@@ -134,7 +131,7 @@ const updatePosicao = async (req, res) => {
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Posição atualizada com sucesso',
+        message: 'Posição atualizada com sucesso!',
         data: response
       })
     } catch (error) {
