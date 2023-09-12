@@ -8,12 +8,12 @@ const getranking = async (req, res) => {
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível encontrar os registros de posição',
+          message: 'Não foi possível encontrar os registros de ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Registros de posição recuperados com sucesso!',
+        message: 'Registros de ranking recuperados com sucesso!',
         data: response
       })
     }
@@ -25,12 +25,12 @@ const getranking = async (req, res) => {
     if (!response) {
       return res.status(500).send({
         type: 'error',
-        message: 'Não foi possível encontrar o registro de posição',
+        message: 'Não foi possível encontrar o registro de ranking',
       })
     }
     return res.status(200).send({
       type: 'success',
-      message: 'Registro de posição recuperado com sucesso!',
+      message: 'Registro de ranking recuperado com sucesso!',
       data: response
     })
   } catch (error) {
@@ -50,12 +50,12 @@ const createranking = async (req, res) => {
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível registrar a posição',
+          message: 'Não foi possível registrar a ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Posição registrada com sucesso!',
+        message: 'ranking registrada com sucesso!',
         data: response
       })
     } catch (error) {
@@ -72,7 +72,7 @@ const deleteranking = async (req, res) => {
       if (!id_ranking) {
         return res.status(404).send({
           type: 'error',
-          message: 'Id não informado para deleção da posição',
+          message: 'Id não informado para deleção da ranking',
         })
       }
       let ranking = await ranking.findOne({
@@ -83,19 +83,19 @@ const deleteranking = async (req, res) => {
       if (!ranking) {
         return res.status(404).send({
           type: 'error',
-          message: 'Registro de posição não encontrado com este Id',
+          message: 'Registro de ranking não encontrado com este Id',
         })
       }
       let response = await ranking.destroy()
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível deletar a posição',
+          message: 'Não foi possível deletar a ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Posição deletada com sucesso!',
+        message: 'ranking deletada com sucesso!',
       })
     } catch (error) {
       return res.status(500).send({
@@ -117,7 +117,7 @@ const updateranking = async (req, res) => {
       if (!ranking) {
         return res.status(404).send({
           type: 'error',
-          message: 'Registro de posição não encontrado com este Id',
+          message: 'Registro de ranking não encontrado com este Id',
         })
       }
       let response = await ranking.update({
@@ -131,7 +131,7 @@ const updateranking = async (req, res) => {
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Posição atualizada com sucesso!',
+        message: 'ranking atualizada com sucesso!',
         data: response
       })
     } catch (error) {
