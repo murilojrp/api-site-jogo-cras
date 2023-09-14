@@ -1,21 +1,21 @@
 import sequelize from "./index.js";
 import Sequelize from "sequelize";
 
-const Ranking = sequelize.define('ranking', {
-    id_ranking: {
+const Item = sequelize.define('item', {
+    id_item: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nome_jogador: {
+    descricao: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    pontuacao: {
-      type: Sequelize.INTEGER,
+    encontrado: {
+      type: Sequelize.BOOLEAN,
       allowNull: false
     }
 });
 
-export default Ranking;
+export default Item;

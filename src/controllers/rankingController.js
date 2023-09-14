@@ -1,23 +1,23 @@
 import Ranking from "../models/ranking.js";
 
-const getranking = async (req, res) => {
+const getRanking = async (req, res) => {
   try {
     let id_ranking = req.params.id_ranking;
     if (!id_ranking) {
-      let response = await ranking.findAll()
+      let response = await Ranking.findAll()
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível encontrar os registros de ranking',
+          message: 'Não foi possível encontrar os registros de Ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'Registros de ranking recuperados com sucesso!',
+        message: 'Registros de Ranking recuperados com sucesso!',
         data: response
       })
     }
-    let response = await ranking.findOne({
+    let response = await Ranking.findOne({
       where: {
         id_ranking
       }
@@ -25,12 +25,12 @@ const getranking = async (req, res) => {
     if (!response) {
       return res.status(500).send({
         type: 'error',
-        message: 'Não foi possível encontrar o registro de ranking',
+        message: `Não foi possível encontrar o registro de ranking com o Id ${id_ranking}`,
       })
     }
     return res.status(200).send({
       type: 'success',
-      message: 'Registro de ranking recuperado com sucesso!',
+      message: `Registro ${id_ranking} de Ranking recuperado com sucesso!`,
       data: response
     })
   } catch (error) {
@@ -41,21 +41,22 @@ const getranking = async (req, res) => {
   }
 }
 
-const createranking = async (req, res) => {
+const createRanking = async (req, res) => {
     try {
-      const { vetorXY } = req.body;
-      let response = await ranking.create({
-        vetorXY
+      const { nome_jogador, pontuacao } = req.body;
+      let response = await Ranking.create({
+        nome_jogador,
+        pontuacao
       })
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível registrar a ranking',
+          message: 'Não foi possível registrar no Ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'ranking registrada com sucesso!',
+        message: 'Registro em Ranking realizado com sucesso!',
         data: response
       })
     } catch (error) {
@@ -66,16 +67,16 @@ const createranking = async (req, res) => {
     }
 }
 
-const deleteranking = async (req, res) => {
+const deleteRanking = async (req, res) => {
     try {
       let id_ranking = req.params.id_ranking;
       if (!id_ranking) {
         return res.status(404).send({
           type: 'error',
-          message: 'Id não informado para deleção da ranking',
+          message: 'Id não informado para deleção de Ranking',
         })
       }
-      let ranking = await ranking.findOne({
+      let ranking = await Ranking.findOne({
         where: {
           id_ranking
         }
@@ -83,19 +84,19 @@ const deleteranking = async (req, res) => {
       if (!ranking) {
         return res.status(404).send({
           type: 'error',
-          message: 'Registro de ranking não encontrado com este Id',
+          message: `Registro de Ranking não encontrado com o Id ${id_ranking}`,
         })
       }
       let response = await ranking.destroy()
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível deletar a ranking',
+          message: 'Não foi possível deletar o registro em Ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'ranking deletada com sucesso!',
+        message: `Registro ${id_ranking} em Ranking deletado com sucesso!`,
       })
     } catch (error) {
       return res.status(500).send({
@@ -105,11 +106,11 @@ const deleteranking = async (req, res) => {
     }
 }
 
-const updateranking = async (req, res) => {
+const updateRanking = async (req, res) => {
     try {
       let id_ranking = req.params.id_ranking;
-      let { vetorXY } = req.body;
-      let ranking = await ranking.findOne({
+      let { nome_jogador, pontuacao } = req.body;
+      let ranking = await Ranking.findOne({
         where: {
           id_ranking
         }
@@ -117,21 +118,22 @@ const updateranking = async (req, res) => {
       if (!ranking) {
         return res.status(404).send({
           type: 'error',
-          message: 'Registro de ranking não encontrado com este Id',
+          message: `Registro de Ranking não encontrado com o Id ${id_ranking}`,
         })
       }
       let response = await ranking.update({
-        vetorXY
+        nome_jogador,
+        pontuacao
       })
       if (!response) {
         return res.status(500).send({
           type: 'error',
-          message: 'Não foi possível atualizar o ranking',
+          message: 'Não foi possível atualizar o registro de Ranking',
         })
       }
       return res.status(200).send({
         type: 'success',
-        message: 'ranking atualizada com sucesso!',
+        message: `Registro ${id_ranking} de Ranking atualizado com sucesso!`,
         data: response
       })
     } catch (error) {
@@ -144,8 +146,8 @@ const updateranking = async (req, res) => {
 
 
 export default {
-    getranking,
-    createranking,
-    deleteranking,
-    updateranking
+  getRanking,
+  createRanking,
+  deleteRanking,
+  updateRanking
 }

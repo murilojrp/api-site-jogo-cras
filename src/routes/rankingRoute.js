@@ -1,9 +1,9 @@
 import rankingController from '../controllers/rankingController.js';
 
 export default (app) => {
-  app.get('/getranking/:id_ranking', rankingController.getranking);
-  app.get('/getranking', rankingController.getranking);
-  app.post('/createranking', rankingController.createranking);
-  app.delete('/deleteranking/:id_ranking', rankingController.deleteranking);
-  app.post('/updateranking/:id_ranking', rankingController.updateranking);
+  app.get('/getRanking/:id_ranking', rankingController.getRanking);
+  app.get('/getRanking', rankingController.getRanking);
+  app.post('/createRanking', rankingController.createRanking);
+  app.delete('/deleteRanking/:id_ranking', rankingController.deleteRanking);
+  app.post('/updateRanking/:id_ranking', rankingController.updateRanking);
 }
