@@ -11,7 +11,9 @@ const Posicao = sequelize.define('posicao', {
     vetorXY: {
       type: Sequelize.STRING,
       allowNull: false
-    }
+    },
+}, {
+  freezeTableName: true
 });
 
 export default Posicao;

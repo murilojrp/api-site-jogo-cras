@@ -16,6 +16,8 @@ const Ranking = sequelize.define('ranking', {
       type: Sequelize.INTEGER,
       allowNull: false
     }
+}, {
+  freezeTableName: true
 });
 
 export default Ranking;

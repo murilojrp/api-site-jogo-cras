@@ -15,12 +15,11 @@ app.use((req, res) => {
 db.sync()
   .then(() => {
       console.log("Base de dados sincronizada com sucesso!");
+      console.log('Api-Site-Jogo-Cras rodando na porta 3000!');
   })
   .catch((err) => {
       console.log("Falha em sincronizar a base de dados: " + err.message);
   });
 
-app.listen(3000, () => {
-    console.log('Api-Site-Jogo-Cras rodando na porta 3000!');
-});
+app.listen(3000, () => {});
 

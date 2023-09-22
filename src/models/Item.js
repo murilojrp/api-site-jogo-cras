@@ -16,6 +16,8 @@ const Item = sequelize.define('item', {
       type: Sequelize.BOOLEAN,
       allowNull: false
     }
+}, {
+  freezeTableName: true
 });
 
 export default Item;

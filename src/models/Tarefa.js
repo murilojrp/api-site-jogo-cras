@@ -20,6 +20,8 @@ const Tarefa = sequelize.define('tarefa', {
       type: Sequelize.STRING,
       allowNull: false
     }
+}, {
+  freezeTableName: true
 });
 
 export default Tarefa;
