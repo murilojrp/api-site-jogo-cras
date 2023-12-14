@@ -4,7 +4,13 @@ const getRanking = async (req, res) => {
   try {
     let id_ranking = req.params.id_ranking;
     if (!id_ranking) {
-      let response = await Ranking.findAll()
+      let response = await Ranking.findAll(
+        {
+          order: [
+            ['pontuacao', 'DESC']
+          ]
+        }
+      )
       if (!response) {
         return res.status(500).send({
           type: 'error',
@@ -43,6 +49,7 @@ const getRanking = async (req, res) => {
 
 const createRanking = async (req, res) => {
     try {
+      return;
       const { nome_jogador, pontuacao } = req.body;
       let response = await Ranking.create({
         nome_jogador,
